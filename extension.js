@@ -19,6 +19,7 @@ const setRandomTheme = async () => {
 
 	const random = Math.floor(Math.random() * Math.floor(themes.length));
 	await configuration.update('workbench.colorTheme', themes[random]);
+	vscode.window.showInformationMessage(`${themes[random]} Theme enabled`);
 };
 
 /**
@@ -27,7 +28,7 @@ const setRandomTheme = async () => {
 function activate(context) {
 	console.log('Congratulations, your extension "vscodeRandomTheme" is now active!');
 	const configuration = vscode.workspace.getConfiguration();
-	const isEnableRandomTheme = configuration.get('gitImprovements.enableRandomTheme');
+	const isEnableRandomTheme = configuration.get('vscodeRandomTheme.enableRandomTheme');
 
 	if (isEnableRandomTheme) {
 		setTimeout(setRandomTheme, 2000);
